@@ -1,0 +1,65 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.chat{
+  margin: 2em auto;
+  background-color: #f3e8f0;
+  padding: 2em;
+  border-radius: 20px;
+  width: 620px;
+  box-shadow: 0 0 10px #bbb;
+}
+
+.login{
+  border-top: 1px solid #ccc;
+  padding-top: 2em;
+}
+h2{
+  color: tomato;
+  margin-bottom: 1em;
+}
+ul{
+  margin: 0;
+  padding: 0;
+}
+
+li{
+  list-style: none;
+  margin-bottom: 1em;
+  color: #706B6F;
+}
+
+input{
+  margin-right: 1em;
+  border: none;
+  padding: .5em;
+  border-radius: 50px;
+  background: #f3e8f0;
+  box-shadow:  4px 4px 8px #cfc5cc, 
+               -4px -4px 8px #ffffff;
+}
+
+button.btn.btn-sm.btn-danger{
+  background-color: none;
+  float: right;
+  background: #f3e8f0;
+  border: none;
+  color: tomato;
+  border-radius: 50px;
+  box-shadow:  4px 4px 8px #cfc5cc, 
+               -4px -4px 8px #ffffff;
+}
+
+li::after{
+  float: right;
+  content: '☑ 13:01';
+  color: #ccc;
+  font-weight: 100;
+}
+

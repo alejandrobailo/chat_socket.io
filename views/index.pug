@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  .chat
+    h2 /txat.
+    .msgWrapper
+      ul#listaMensajes
+        each val in ['Server: Jelou', 'Client: comorrrrrrr']
+          li= val
+    .login
+      input#username(type="text" placeholder="User" name="user")
+      input#mensaje(type="text" placeholder="Text" name="msg")
+      button#btnEnviar.btn.btn-sm.btn-danger Enviar
+  
+  script. 
+    let socket = io();
