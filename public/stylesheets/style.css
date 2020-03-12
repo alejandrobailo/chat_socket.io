@@ -20,6 +20,11 @@ a {
   border-top: 1px solid #ccc;
   padding-top: 2em;
 }
+
+.usersNumber{
+  float: right;
+  font-size: .5em;
+}
 h2{
   color: tomato;
   margin-bottom: 1em;
@@ -39,6 +44,7 @@ input{
   margin-right: 1em;
   border: none;
   padding: .5em;
+  color: #706B6F;
   border-radius: 50px;
   background: #f3e8f0;
   box-shadow:  4px 4px 8px #cfc5cc, 
@@ -56,10 +62,9 @@ button.btn.btn-sm.btn-danger{
                -4px -4px 8px #ffffff;
 }
 
-li::after{
-  float: right;
-  content: '☑ 13:01';
-  color: #ccc;
-  font-weight: 100;
+footer{
+  margin-top: 5em;
+  font-size: .7em;
+  text-align: center;
 }
 

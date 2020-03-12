@@ -3,14 +3,49 @@ extends layout
 block content
   .chat
     h2 /txat.
+      span#numeroUsuarios.usersNumber
     .msgWrapper
       ul#listaMensajes
-        each val in ['Server: Jelou', 'Client: comorrrrrrr']
-          li= val
     .login
       input#username(type="text" placeholder="User" name="user")
       input#mensaje(type="text" placeholder="Text" name="msg")
       button#btnEnviar.btn.btn-sm.btn-danger Enviar
   
+  footer
+    p This app was created during the apocalypse of COVID19's virus, so please donate.
   script. 
     let socket = io();
+    
+    //- Capturamos los input:
+    let inputUsername = document.getElementById('username');
+    let inputMensaje = document.getElementById('mensaje');
+    let date = new Date();
+    let realdate = moment(date).format('YYYY-MM-DD HH:mm:ss');
+    let listaMensajes = document.getElementById('listaMensajes');
+    let numeroUsuarios = document.getElementById('numeroUsuarios');
+
+    //- Capturamos el botón:
+    let boton = document.getElementById('btnEnviar');
+    boton.addEventListener('click', () => {
+        //- Emitimos un mensaje que llega al server
+      if(inputMensaje.value != '' && inputUsername.value != ''){
+        socket.emit('chat_message', {
+          username: inputUsername.value,
+          message: inputMensaje.value
+        });
+        inputUsername.value = '';
+        inputMensaje.value = '';
+      }
+    });
+
+    //- Y el server se lo manda a todos
+    socket.on('chat_message', (data) => {
+      //- Lo hacemos aqui por la vista ya ha sido renderizada
+      let li = document.createElement('li');
+      li.textContent = `${data.username}: ${data.message} - ${realdate}`;
+      listaMensajes.appendChild(li);
+    });
+
+    socket.on('chat_users', (data) => {
+      numeroUsuarios.textContent = data;
+    })

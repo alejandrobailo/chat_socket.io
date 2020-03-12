@@ -25,6 +25,30 @@ let io = require('socket.io')(server);
 // Evento 'on', que nos devuelve el socket que es el canal de comunicación entre el ciente y nuestro server.
 io.on('connection', (socket) => {
   console.log('Se ha conectado un nuevo cliente');
+
+  // Para ver cuantos usuarios hay conectados:
+  io.emit('chat_users', io.engine.clientsCount);
+
+  socket.on('chat_message', (data) => {
+    io.emit('chat_message', data);
+  });
+
+  // Ver quien se desconecta:
+  socket.on('disconnect', () => {
+    io.emit('chat_users', io.engine.clientsCount);
+    socket.broadcast.emit('chat_message', {
+      username: 'INFO',
+      message: 'Se ha desconectado un user'
+    });
+  });
+
+  // Mensaje a todos los que estan conectados menos el que se conecta:
+  socket.broadcast.emit('chat_message', {
+    username: 'INFO',
+    message: 'Se ha conectado un nuevo user'
+  });
+
+
 });
 
 
