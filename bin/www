@@ -26,12 +26,13 @@ let io = require('socket.io')(server);
 io.on('connection', (socket) => {
   console.log('Se ha conectado un nuevo cliente');
 
-  // Para ver cuantos usuarios hay conectados:
-  io.emit('chat_users', io.engine.clientsCount);
-
+  // Mensajes
   socket.on('chat_message', (data) => {
     io.emit('chat_message', data);
   });
+
+  // Para ver cuantos usuarios hay conectados:
+  io.emit('chat_users', io.engine.clientsCount);
 
   // Ver quien se desconecta:
   socket.on('disconnect', () => {
@@ -47,7 +48,6 @@ io.on('connection', (socket) => {
     username: 'INFO',
     message: 'Se ha conectado un nuevo user'
   });
-
 
 });
 

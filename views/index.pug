@@ -16,16 +16,17 @@ block content
   script. 
     let socket = io();
     
-    //- Capturamos los input:
+    //- Capturamos los input, etc:
     let inputUsername = document.getElementById('username');
     let inputMensaje = document.getElementById('mensaje');
-    let date = new Date();
-    let realdate = moment(date).format('YYYY-MM-DD HH:mm:ss');
     let listaMensajes = document.getElementById('listaMensajes');
     let numeroUsuarios = document.getElementById('numeroUsuarios');
-
     //- Capturamos el botón:
     let boton = document.getElementById('btnEnviar');
+    //- Creamos la fecha
+    let date = new Date();
+    let realdate = moment(date).format('YYYY-MM-DD HH:mm:ss');
+
     boton.addEventListener('click', () => {
         //- Emitimos un mensaje que llega al server
       if(inputMensaje.value != '' && inputUsername.value != ''){
@@ -39,7 +40,7 @@ block content
 
     //- Y el server se lo manda a todos
     socket.on('chat_message', (data) => {
-      //- Lo hacemos aqui por la vista ya ha sido renderizada
+      //- Lo hacemos aqui por la vista ya ha sido renderizada:
       let li = document.createElement('li');
       li.textContent = `${data.username}: ${data.message} - ${realdate}`;
       listaMensajes.appendChild(li);
